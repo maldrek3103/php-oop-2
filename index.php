@@ -37,12 +37,39 @@ class Employee extends User
 {
     public $level;
 
+    public function __construct($name, $surname, $email, $level)
+    {
+        parent::__construct($name, $surname, $email);
+        $this->level = $level;
+    }
+
     public function setLevel($level)
     {
         $this->level = $level;
     }
 }
 
+class Customer extends User
+{
+    public $c;
+    public $discount = 0;
+
+    public function __construct($name, $surname, $email, $c, $discount = 0)
+    {
+        parent::__construct($name, $surname, $email);
+        $this->c = $c;
+        $this->discount = $discount;
+    }
+
+    public function setCredit($c)
+    {
+        $this->c = $c;
+    }
+    public function setDiscount($discount)
+    {
+        $this->discount = $discount;
+    }
+}
 
 
 $product1 = new Product('Spaghetti', '1.50', '10');
