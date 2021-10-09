@@ -3,11 +3,11 @@
 // CREDIT CARD
 trait CreditCard
 {
-    public $c;
+    public $creditcard;
 
-    public function insertCreditCard($c)
+    public function insertCreditCard($creditcard)
     {
-        $this->c = $c;
+        $this->c = $creditcard;
     }
 }
 
@@ -33,18 +33,17 @@ class Product
 // USER
 class User
 {
-    use CreditCard;
+
 
     public $name;
     public $surname;
     public $age;
 
 
-    public function __construct($name, $surname, $c)
+    public function __construct($name, $surname)
     {
         $this->name = $name;
         $this->surname = $surname;
-        $this->c = $c;
     }
 }
 
@@ -52,13 +51,13 @@ class User
 // EMPLOYEE EXTENDS USER
 class Employee extends User
 {
-    use CreditCard;
+
 
     public $level;
 
-    public function __construct($name, $surname, $level, $c)
+    public function __construct($name, $surname, $level)
     {
-        parent::__construct($name, $surname, $c);
+        parent::__construct($name, $surname);
         $this->level = $level;
     }
 
@@ -75,15 +74,20 @@ class Customer extends User
     use CreditCard;
 
     public $discount = 0;
+    public $creditcard;
 
-    public function __construct($name, $surname, $c, $discount = 0)
+    public function __construct($name, $surname, $creditcard, $discount = 0)
     {
-        parent::__construct($name, $surname, $c);
+        parent::__construct($name, $surname);
 
         $this->discount = $discount;
+        $this->creditcard = $creditcard;
     }
 
-
+    public function insertCreditCard($creditcard)
+    {
+        $this->creditcard = $creditcard;
+    }
     public function setDiscount($discount)
     {
         $this->discount = $discount;
