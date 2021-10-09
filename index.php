@@ -21,15 +21,16 @@ class User
     public $name;
     public $surname;
     public $age;
-    public $email;
+    public $c;
 
-
-
-    public function __construct($name, $surname, $email)
+    public function __construct($name, $surname)
     {
         $this->name = $name;
         $this->surname = $surname;
-        $this->email = $email;
+    }
+    public function insertCreditCard($c)
+    {
+        $this->c = $c;
     }
 }
 
@@ -37,9 +38,9 @@ class Employee extends User
 {
     public $level;
 
-    public function __construct($name, $surname, $email, $level)
+    public function __construct($name, $surname, $level)
     {
-        parent::__construct($name, $surname, $email);
+        parent::__construct($name, $surname);
         $this->level = $level;
     }
 
@@ -51,29 +52,40 @@ class Employee extends User
 
 class Customer extends User
 {
-    public $c;
+
     public $discount = 0;
 
-    public function __construct($name, $surname, $email, $c, $discount = 0)
+    public function __construct($name, $surname, $discount = 0)
     {
-        parent::__construct($name, $surname, $email);
-        $this->c = $c;
+        parent::__construct($name, $surname);
+
         $this->discount = $discount;
     }
 
-    public function setCredit($c)
-    {
-        $this->c = $c;
-    }
+
     public function setDiscount($discount)
     {
         $this->discount = $discount;
     }
 }
 
+class CreditCard extends User
+{
+    public $c;
 
-$product1 = new Product('Spaghetti', '1.50', '10');
+    public function __construct($name, $surname, $c)
+    {
+        parent::__construct($name, $surname);
+        $this->c = $c;
+    }
+    public function insertCreditCard($c)
+    {
+        $user = parent::insertCreditCard($c);
+        return $user;
+    }
+}
 
-$customer1 = new User('Antonio', 'Rossi', 'antonio.rossi@neri.net');
 
-var_dump($product1);
+$c = new CreditCard('Antonio', 'Rossi', '123231231231');
+
+var_dump($c);
