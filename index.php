@@ -93,3 +93,8 @@ class Customer extends User
         $this->discount = $discount;
     }
 }
+
+
+$customer = new Customer('Federe', 'Fora', '121412434123');
+$customer->insertCreditCard('2435235423');
+var_dump($customer);
